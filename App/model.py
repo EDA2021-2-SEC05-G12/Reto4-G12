@@ -31,15 +31,99 @@ from DISClib.ADT import map as mp
 from DISClib.DataStructures import mapentry as me
 from DISClib.Algorithms.Sorting import shellsort as sa
 assert cf
+from DISClib.ADT.graph import gr
 
 """
-Se define la estructura de un catálogo de videos. El catálogo tendrá dos listas, una para los videos, otra para las categorias de
-los mismos.
+
 """
 
 # Construccion de modelos
+def newCatalog():
+
+    catalog = {
+               'graph':None,
+               'airports_map':None,
+               'cities':None
+               }
+    
+    catalog['graph'] = gr.newGraph(datastructure='ADJ_LIST', #aeropuertos/ km
+                                         directed = False,
+                                         size= 15000,
+                                         comparefunction=compareJointId)
+
+    catalog["aux_graph"]=gr.newGraph(datastructure='ADJ_LIST',
+                                         directed = False,
+                                         size= 15000,
+                                         comparefunction=compareJointId)
+
+    
+    catalog['airports'] = gr.newGraph(datastructure='ADJ_LIST',  #VERTICES AEROPUERTOS
+                                         directed = False,
+                                         size= 15000,
+                                         comparefunction=compareJointId)
+
+    
+    catalog["airport_by_name"]=mp.newMap(numelements=1300,maptype='PROBING') #aeropuerto y su iata
+
+
+    catalog['airports_map'] = mp.newMap(numelements=1500,
+                                          maptype='PROBING')
+    
+    catalog['same_airport_map']=mp.newMap(numelements=1500,maptype='PROBING')
+    
+
+    catalog['cities'] = mp.newMap(numelements=250,
+                                          maptype='PROBING')
+    
+    catalog['airport_by_city_map'] = mp.newMap(numelements=15000,
+                                          maptype='PROBING')
+
+    catalog["cities_name"]=lt.newList("ARRAY_LIST")
+
+    catalog["airports_name"]=lt.newList("ARRAY_LIST")
+
+    catalog['route_map'] = mp.newMap(numelements=2500,
+                                          maptype='PROBING')
+    
+    catalog['airlane_map'] = mp.newMap(numelements=5000,
+                                          maptype='PROBING')
+    return catalog
+
 
 # Funciones para agregar informacion al catalogo
+def addAirports(catalog, airport):
+    """
+    
+    """
+
+    name=airport["Name"].split(",")
+    city_name=name[0].lower()
+    city = name[-1].title()
+    airport['City'] = city
+
+    mp.put(catalog["airport_by_name"],city_name,airport["IATA"])
+    mp.put(catalog['airports_map'],airport['IATA'],airport)
+    lt.addLast(catalog["airports_name"],airport["IATA"])
+
+    city = airport['name'].split(',')
+    city = city[-1].lower().strip()
+    exists = mp.get(catalog['airport_by_city_map'],city)
+
+    if exists is None: 
+        airports_list=lt.newList(datastructure="ARRAY_LIST")
+        lt.addLast(airports_list,airport['IATA'])
+    else:
+        airports_list=me.getValue(exists)
+        if not lt.isPresent(airports_list,airport['IATA']):
+            lt.addLast(airports_list,airport['IATA'])
+
+    mp.put(catalog["airport_by_city_map"],city,airports_list)
+
+
+
+#añada rutas
+#agregar conex
+#agregar ciudades
 
 # Funciones para creacion de datos
 
