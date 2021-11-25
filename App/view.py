@@ -34,10 +34,20 @@ se hace la solicitud al controlador para ejecutar la
 operación solicitada
 """
 
+airport= 'airports_full.csv'
+routes= 'routes_full.csv'
+Worldcities= 'worldcities.csv'
+
+
 def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo")
-    print("2- ")
+    print("2- requerimiento 1") #cmabiar lugo req1 por lo que hace el requerimineto
+    print("3- requerimiento 2")
+    print("4- requerimiento 3")
+    print("5- requerimiento 4")
+    print("6- requerimiento 5")
+    print("7- requerimiento 6") #bono
 
 catalog = None
 
