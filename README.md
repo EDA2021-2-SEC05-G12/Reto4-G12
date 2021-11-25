@@ -1,3 +1,6 @@
+Alejandro Hernández 202111716 a.hernandezo2@uniandes.edu.co --- Luisa Hernández 202114093 lg.hernandezp1@uniandes.edu.co 
+
+
 #ISIS1225 - Librerias de soporte
 
 Este proyecto contiene los Tipos abstractos de datos, estructuras de datos y algoritmos requeridos por el curso ISIS1225-Estructuras de Datos y Algoritmos
