@@ -51,8 +51,8 @@ se hace la solicitud al controlador para ejecutar la
 operación solicitada
 """
 
-airports_filename = 'airports-utf8-large.csv'
-routes_filename = 'routes-utf8-large.csv'
+airports_filename = 'airports-utf8-small.csv'
+routes_filename = 'routes-utf8-small.csv'
 worldcities_filename = 'worldcities-utf8.csv'
 
 catalog = None
@@ -397,16 +397,25 @@ def findTheNearestWayBetweenCities(catalog):#requerimineto 3 (grupal)
     origin_airport = controller.searchNearestAirport(catalog, origin_city)
     if origin_airport is None:
         print(f'No se encontró aeropuerto cercano a {origin_city_str}')
+        stop_time = time.process_time()
+        etms = (stop_time - start_time)*1000
+        print('El tiempo de ejecucion es ' + str(etms) + 'ms')
         return
     # Buscar el aeropuerto más cercano de la otra ciudad
     target_airport = controller.searchNearestAirport(catalog, target_city)
     if target_airport is None:
         print(f'No se encontró aeropuerto cercano a {target_city_str}')
+        stop_time = time.process_time()
+        etms = (stop_time - start_time)*1000
+        print('El tiempo de ejecucion es ' + str(etms) + 'ms')
         return
     # Calcular la distancia normal
     flights = controller.getFlightsToPoints(catalog, origin_airport, target_airport)
     if flights is None:
         print('No se pueden obtener un camino desde', origin_city_str, 'a', target_city_str)
+        stop_time = time.process_time()
+        etms = (stop_time - start_time)*1000
+        print('El tiempo de ejecucion es ' + str(etms) + 'ms')
         return
     flight_list = controller.convertStackToList(flights)
     # Calcular la distancia de vuelo por tramos
