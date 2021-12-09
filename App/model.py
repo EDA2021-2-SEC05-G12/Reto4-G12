@@ -251,6 +251,10 @@ def findCities(analyzer, city_name):
     return city_list
 
 
+def getAllAirports(analyzer):
+    return mp.valueSet(analyzer['airports'])
+
+
 def getAllAirportsFor(analyzer, city):
     """
     Retorna una lista de todos los aeropuertos de una ciudad.

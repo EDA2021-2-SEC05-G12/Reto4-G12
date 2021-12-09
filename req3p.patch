@@ -1,0 +1,30 @@
+diff --git a/App/controller.py b/App/controller.py
+index 5522c94..5da28d8 100644
+--- a/App/controller.py
++++ b/App/controller.py
+@@ -124,8 +124,8 @@ def searchNearestAirport(analyzer, origin_city):
+     """
+     airports, length = model.getAllAirportsFor(analyzer, origin_city)
+     if length == 0:
+-        print("No se encontró aeropuerto para", origin_city['city'])
+-        return None
++        print("No se encontró aeropuerto para", origin_city['city'], "usando relación ciudad-aeropuerto")
++        airports = model.getAllAirports(analyzer)
+     nearest = model.getNearestAirportTo(airports, origin_city['lat'], origin_city['lng'])
+     return nearest
+ 
+diff --git a/App/model.py b/App/model.py
+index 4a47bac..22434c1 100644
+--- a/App/model.py
++++ b/App/model.py
+@@ -253,6 +253,10 @@ def findCities(analyzer, city_name):
+     return city_list
+ 
+ 
++def getAllAirports(analyzer):
++    return mp.valueSet(analyzer['airports'])
++
++
+ def getAllAirportsFor(analyzer, city):
+     """
+     Retorna una lista de todos los aeropuertos de una ciudad.

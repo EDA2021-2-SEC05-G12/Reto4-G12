@@ -124,8 +124,8 @@ def searchNearestAirport(analyzer, origin_city):
     """
     airports, length = model.getAllAirportsFor(analyzer, origin_city)
     if length == 0:
-        print("No se encontró aeropuerto para", origin_city['city'])
-        return None
+        print("No se encontró aeropuerto para", origin_city['city'], "usando relación ciudad-aeropuerto")
+        airports = model.getAllAirports(analyzer)
     nearest = model.getNearestAirportTo(airports, origin_city['lat'], origin_city['lng'])
     return nearest
 
