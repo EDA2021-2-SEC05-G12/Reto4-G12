@@ -288,6 +288,7 @@ def selectOneCityFromVarious(cities):
 
 
 def findInterconnectionPoints(catalog): #requerimiento 1 (grupal)
+    start_time = time.process_time()
     iata_data_list, count = controller.getConnectedAirports(catalog, amount=5)
     print("Connected airports inside network:", count)
     print("TOP 5 most connected airports...")
@@ -320,9 +321,12 @@ def findInterconnectionPoints(catalog): #requerimiento 1 (grupal)
         *location,
     )
     visualize(visualization_data, 'puntos-de-interconexión-aérea.html')
-
+    stop_time = time.process_time()
+    etms = (stop_time - start_time)*1000
+    print('El tiempo de ejecucion es ' + str(etms) + 'ms')
 
 def findClusters(catalog): #requerimeinto 2 (grupal)
+    start_time = time.process_time()
     print('Buscando clústers...')
     amount = controller.amountOfCluster(catalog)
     print("Clusters:", amount)
@@ -364,9 +368,12 @@ def findClusters(catalog): #requerimeinto 2 (grupal)
             ],
         )
     visualize(visualization_data, 'clústeres-de-tráfico-aéreo.html')
-
+    stop_time = time.process_time()
+    etms = (stop_time - start_time)*1000
+    print('El tiempo de ejecucion es ' + str(etms) + 'ms')
 
 def findTheNearestWayBetweenCities(catalog):#requerimineto 3 (grupal)
+    start_time = time.process_time()
     # Preguntar una ciudad
     origin_city_str = input("Escribe el nombre de la ciudad de origen: ")
     # Si hay varias, pedir ayuda para elegir la correcta
@@ -449,9 +456,13 @@ def findTheNearestWayBetweenCities(catalog):#requerimineto 3 (grupal)
         )
     visualization_data = addRoutes(visualization_data, points)
     visualize(visualization_data, 'ruta-más-corta-entre-ciudades.html')
+    stop_time = time.process_time()
+    etms = (stop_time - start_time)*1000
+    print('El tiempo de ejecucion es ' + str(etms) + 'ms')
 
 
 def useTravelerMiles(catalog): #requeriemirnto 4 (grupal)
+    start_time = time.process_time()
     # Preguntar una ciudad
     origin_city_str = input("Escribe el nombre de la ciudad de origen: ")
     # Si hay varias, pedir ayuda para elegir la correcta
@@ -527,9 +538,13 @@ def useTravelerMiles(catalog): #requeriemirnto 4 (grupal)
         points.append([airport['Latitude'], airport['Longitude']])
     visualization_data = addRoutes(visualization_data, points)
     visualize(visualization_data, 'las-millas-de-viajero.html')
+    stop_time = time.process_time()
+    etms = (stop_time - start_time)*1000
+    print('El tiempo de ejecucion es ' + str(etms) + 'ms')
 
 
 def evalIfAirportStopWorking(catalog): #requerimiento 5 (grupal)
+    start_time = time.process_time()
     iata = input('Código IATA del aeropuerto fuera de funcionamiento: ')
     airport, airport_affedted_data_list = controller.getAirportsAffectedForIATA(catalog, iata)
     print('Si el aeropuerto',
@@ -582,6 +597,9 @@ def evalIfAirportStopWorking(catalog): #requerimiento 5 (grupal)
             ]
         )
     visualize(visualization_data, 'efecto-de-un-aeropuerto-cerrado.html')
+    stop_time = time.process_time()
+    etms = (stop_time - start_time)*1000
+    print('El tiempo de ejecucion es ' + str(etms) + 'ms')
 
 
 """
