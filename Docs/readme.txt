@@ -1,1 +1,1 @@
-Responder preguntas y marcar con el nombre de los integrantes
+Utilizar los archivos de datos que se encuentran en Sicuaplus
