@@ -287,7 +287,7 @@ def selectOneCityFromVarious(cities):
     return city
 
 
-def findInterconnectionPoints(catalog):
+def findInterconnectionPoints(catalog): #requerimiento 1 (grupal)
     iata_data_list, count = controller.getConnectedAirports(catalog, amount=5)
     print("Connected airports inside network:", count)
     print("TOP 5 most connected airports...")
@@ -322,7 +322,7 @@ def findInterconnectionPoints(catalog):
     visualize(visualization_data, 'puntos-de-interconexión-aérea.html')
 
 
-def findClusters(catalog):
+def findClusters(catalog): #requerimeinto 2 (grupal)
     print('Buscando clústers...')
     amount = controller.amountOfCluster(catalog)
     print("Clusters:", amount)
@@ -366,7 +366,7 @@ def findClusters(catalog):
     visualize(visualization_data, 'clústeres-de-tráfico-aéreo.html')
 
 
-def findTheNearestWayBetweenCities(catalog):
+def findTheNearestWayBetweenCities(catalog):#requerimineto 3 (grupal)
     # Preguntar una ciudad
     origin_city_str = input("Escribe el nombre de la ciudad de origen: ")
     # Si hay varias, pedir ayuda para elegir la correcta
@@ -451,7 +451,7 @@ def findTheNearestWayBetweenCities(catalog):
     visualize(visualization_data, 'ruta-más-corta-entre-ciudades.html')
 
 
-def useTravelerMiles(catalog):
+def useTravelerMiles(catalog): #requeriemirnto 4 (grupal)
     # Preguntar una ciudad
     origin_city_str = input("Escribe el nombre de la ciudad de origen: ")
     # Si hay varias, pedir ayuda para elegir la correcta
@@ -529,7 +529,7 @@ def useTravelerMiles(catalog):
     visualize(visualization_data, 'las-millas-de-viajero.html')
 
 
-def evalIfAirportStopWorking(catalog):
+def evalIfAirportStopWorking(catalog): #requerimiento 5 (grupal)
     iata = input('Código IATA del aeropuerto fuera de funcionamiento: ')
     airport, airport_affedted_data_list = controller.getAirportsAffectedForIATA(catalog, iata)
     print('Si el aeropuerto',
