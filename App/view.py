@@ -21,6 +21,7 @@
  """
 
 import config as cf
+import time
 import sys
 import controller
 from DISClib.ADT import list as lt
